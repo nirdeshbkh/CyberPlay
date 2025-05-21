@@ -351,7 +351,7 @@
                         <li><a href="rpg-forum.jsp">Forums</a></li>
                         <li><a href="#">News</a></li>
                         <li><a href="#">Events</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="aboutus.jsp">About</a></li>
                     </ul>
                 </div>
 
