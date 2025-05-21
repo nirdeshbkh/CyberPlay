@@ -9,62 +9,67 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet(asyncSupported = true, urlPatterns = {"/addpost"})
+@WebServlet(asyncSupported = true, urlPatterns = { "/addpost" })
 public class AddPostController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    private PostService postService = new PostService();
+  private static final long serialVersionUID = 1L;
+  private PostService postService = new PostService();
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Check login
-        HttpSession session = request.getSession(false);
-        usermodel user = (session != null) ? (usermodel) session.getAttribute("user") : null;
-        if (user == null) {
-            // not logged in → redirect to login page
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        }
-
-        // show the add post form
-        request.getRequestDispatcher("/pages/addpost.jsp")
-               .forward(request, response);
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    // Check login
+    HttpSession session = request.getSession(false);
+    usermodel user = (session != null)
+        ? (usermodel) session.getAttribute("user")
+        : null;
+    if (user == null) {
+      // not logged in → redirect to login page
+      response.sendRedirect(request.getContextPath() + "/login");
+      return;
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Check login again
-        HttpSession session = request.getSession(false);
-        usermodel user = (session != null) ? (usermodel) session.getAttribute("user") : null;
-        if (user == null) {
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        }
+    // load all posts
+    List<postmodel> allPosts = postService.getAllPosts();
+    request.setAttribute("posts", allPosts);
 
-        // read form fields
-        String title   = request.getParameter("title");
-        String content = request.getParameter("content");
-        String username = user.getUserName();
-        int category   = Integer.parseInt(request.getParameter("category"));
+    // show the add post form (with list of existing posts available)
+    request.getRequestDispatcher("/pages/CreateNewPost.jsp")
+        .forward(request, response);
+  }
 
-        // build model and save
-        postmodel post = new postmodel();
-        post.setTitle(title);
-        post.setContent(content);
-        post.setCategory(category);
-        post.setusername(username);
-
-        boolean created = postService.createPost(post);
-        if (created) {
-            // redirect to list or detail page
-            response.sendRedirect(request.getContextPath() + "/posts"); 
-        } else {
-            // on failure, stay on form with error
-            request.setAttribute("errorMessage", "Unable to create post. Please try again.");
-            request.getRequestDispatcher("/pages/addpost.jsp")
-                   .forward(request, response);
-        }
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    // Check login again
+    HttpSession session = request.getSession(false);
+    usermodel user = (session != null) ? (usermodel) session.getAttribute("user") : null;
+    if (user == null) {
+      response.sendRedirect(request.getContextPath() + "/login");
+      return;
     }
+
+    // read form fields
+    String title = request.getParameter("title");
+    String content = request.getParameter("content");
+    String username = user.getUserName();
+    int category = Integer.parseInt(request.getParameter("category"));
+
+    // build model and save
+    postmodel post = new postmodel();
+    post.setTitle(title);
+    post.setContent(content);
+    post.setCategory(category);
+    post.setusername(username);
+
+    boolean created = postService.createPost(post);
+    if (created) {
+      // redirect to list or detail page
+      response.sendRedirect(request.getContextPath() + "/posts");
+    } else {
+      // on failure, stay on form with error
+      request.setAttribute("errorMessage", "Unable to create post. Please try again.");
+      request.getRequestDispatcher("/pages/addpost.jsp")
+          .forward(request, response);
+    }
+  }
 }
-

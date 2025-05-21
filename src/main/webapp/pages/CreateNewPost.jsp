@@ -217,32 +217,53 @@
       <h1 class="text-cyber-blue">Create  <span class="text-cyber-purple">New Post</span></h1>
       <div class="subtitle">Share your thoughts with the community</div>
 
-      <form action="addpost" method="POST">
+      <form action="${pageContext.request.contextPath}/addpost" method="POST">
         <label for="category">Category</label>
         <select id="category" name="category">
-          <option value= 1>FPS Games</option>
-          <option value= 2>RPG Adventures</option>
-          <option value= 3>MMORPG</option>
-          <option value= 4>Simulation</option>
-          <option value= 5>Racing</option>
-          <option value= 6>Battle Royale</option>
-          <option value= 7>Indie Scene</option>
-          <option value= 8>General Gaming</option>
+            <%
+                @SuppressWarnings("unchecked")
+                java.util.List<com.cyberplay.model.categorymodel> cats =
+                    (java.util.List<com.cyberplay.model.categorymodel>) request.getAttribute("categories");
+                for (com.cyberplay.model.categorymodel cat : cats) {
+            %>
+                <option value="<%= cat.getId() %>"><%= cat.getName() %></option>
+            <%
+                }
+            %>
         </select>
 
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" placeholder="Give your post a descriptive title..." />
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Give your post a descriptive title..."
+          required />
 
         <label for="content">Content</label>
-        
-        <textarea id="content" name="content" placeholder="Write your post content here..."></textarea>
+        <textarea
+          id="content"
+          name="content"
+          placeholder="Write your post content here..."
+          required></textarea>
 
         <label for="tags">Tags</label>
-        <input type="text" id="tags" name="tags" placeholder="Add tags separated by commas..." />
+        <input
+          type="text"
+          id="tags"
+          name="tags"
+          placeholder="Add tags separated by commas..." />
 
         <div class="btn">
-          <button type="button" class="cyber-button" cancel">Cancel</button>
-          <button class="cyber-button">Post</button>
+          <button
+            type="button"
+            class="cyber-button"
+            onclick="window.history.back()">
+            Cancel
+          </button>
+          <button type="submit" class="cyber-button">
+            Post
+          </button>
         </div>
       </form>
     </main>
