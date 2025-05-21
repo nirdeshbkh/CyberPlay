@@ -21,6 +21,7 @@
 <% } %>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
+
 <body>
     <!-- Navbar -->
     <header class="navbar">
@@ -36,39 +37,39 @@
                 <a href="#" class="nav-link">Events</a>
                 <a href="aboutus.jsp" class="nav-link">About</a>
             </div>
-            
-            <div class="nav-actions desktop-menu">
-                <button class="nav-icon-btn">
-                    <i data-lucide="search"></i>
-                </button>
-                <button class="nav-icon-btn">
-                    <i data-lucide="bell"></i>
-                </button>
-                <%
-    String username = (String) session.getAttribute("username");
-
-    if (username == null) {
-%>
-    <a href="login.jsp"><button>Login</button></a>
-<%
-    } else {
-%>
-    <p>Welcome, <%= username %>!</p>
-    <a href="/CyberPlay1/logout"><button>Logout</button></a>
-<%
-    }
-%>
-               
-            </div>
+           
+         	<div class="nav-actions desktop-menu">
+    			<button class="nav-icon-btn">
+        			<i data-lucide="search"></i>
+    			</button>
+    			<button class="nav-icon-btn">
+        			<i data-lucide="bell"></i>
+    			</button>
+    			<%
+        			String username = (String) session.getAttribute("username");
+        			if (username == null) {
+    			%>
+        			<a href="login.jsp"><button class="cyber-button">Login</button></a>
+    			<%
+        			} else {
+    			%>
+        			<span class="welcome-message">Welcome, <%= username %>!</span>
+        			<a href="/CyberPlay1/logout"><button class="cyber-button">Logout</button></a>
+    			<%
+        			}
+    			%>
+			</div>
             
             <div class="mobile-menu-toggle">
                 <a href="login.jsp" class="cyber-button">
                     <i data-lucide="log-in"></i>
                     Login
                 </a>
+                
                 <button class="nav-icon-btn">
                     <i data-lucide="menu"></i>
                 </button>
+                
             </div>
         </nav>
     </header>
