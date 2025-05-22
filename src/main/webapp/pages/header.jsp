@@ -26,15 +26,23 @@
     <!-- Navbar -->
     <header class="navbar">
         <nav class="nav-container">
+        
             <div class="nav-logo">
-                <h1 class="logo"><span class="text-cyber-blue">Cyber</span><span class="text-cyber-purple">Play</span></h1>
-            </div>
+    			<h1 class="logo">
+        			<a href="home">
+            			<span class="text-cyber-blue">Cyber</span>
+            			<span class="text-cyber-purple">Play</span>
+        			</a>
+    			</h1>
+			</div>
             
             <div class="nav-links desktop-menu">
                 <a href="home" class="nav-link">Home</a>
                 <a href="home#categories-nav" class="nav-link">Forums</a>
+                <!-- 
                 <a href="#" class="nav-link">News</a>
                 <a href="#" class="nav-link">Events</a>
+                 -->
                 <a href="aboutus.jsp" class="nav-link">About</a>
             </div>
            
