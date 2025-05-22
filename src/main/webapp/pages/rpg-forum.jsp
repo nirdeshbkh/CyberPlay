@@ -400,7 +400,9 @@
                 </div>
 
               
+                <!-- 
                 <div class="footer-links">
+                    
                     <h4 class="footer-subtitle">Game Categories</h4>
                     <ul class="footer-menu">
                         <li><a href="fps-forum.jsp">FPS</a></li>
@@ -413,6 +415,7 @@
                         <li><a href="general-gaming-forum.jsp">General Gaming</a></li>
                     </ul>
                 </div>
+                 -->
 
                 <div class="footer-newsletter">
                     <h4 class="footer-subtitle">Join Our Newsletter</h4>
