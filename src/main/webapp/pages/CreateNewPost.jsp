@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -220,6 +221,7 @@
       <form action="${pageContext.request.contextPath}/addpost" method="POST">
         <label for="category">Category</label>
         <select id="category" name="category">
+        <%@ page import="com.cyberplay.model.categorymodel" %>
             <%
                 @SuppressWarnings("unchecked")
                 java.util.List<com.cyberplay.model.categorymodel> cats =

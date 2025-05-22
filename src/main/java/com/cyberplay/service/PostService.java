@@ -31,7 +31,7 @@ public class PostService {
         while (rs.next()) {
             postmodel post = new postmodel();
             post.setId(rs.getInt("id"));
-            post.setUsername(rs.getString("username"));
+            post.setusername(rs.getString("username"));
             post.setCategory(rs.getInt("category"));
             post.setTitle(rs.getString("title"));
             post.setContent(rs.getString("content"));
@@ -49,7 +49,7 @@ public class PostService {
 
         String sql = "INSERT INTO post (username, category, title, content) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
-            stmt.setInt(1, post.getusername());
+            stmt.setString(1, post.getusername());
             stmt.setInt(2, post.getCategory());
             stmt.setString(3, post.getTitle());
             stmt.setString(4, post.getContent());
@@ -70,7 +70,7 @@ public class PostService {
             if (rs.next()) {
                 postmodel post = new postmodel();
                 post.setId(rs.getInt("id"));
-                post.setUsername(rs.getInt("username"));
+                post.setusername(rs.getString("username"));
                 post.setCategory(rs.getInt("category"));
                 post.setTitle(rs.getString("title"));
                 post.setContent(rs.getString("content"));
@@ -92,7 +92,7 @@ public class PostService {
             while (rs.next()) {
                 postmodel post = new postmodel();
                 post.setId(rs.getInt("id"));
-                post.setUsername(rs.getString("username"));
+                post.setusername(rs.getString("username"));
                 post.setCategory(rs.getInt("category"));
                 post.setTitle(rs.getString("title"));
                 post.setContent(rs.getString("content"));
@@ -109,7 +109,7 @@ public class PostService {
 
         String sql = "UPDATE post SET username = ?, category = ?, title = ?, content = ? WHERE id = ?";
         try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
-            stmt.setString(1, post.getUsername());
+            stmt.setString(1, post.getusername());
             stmt.setInt(2, post.getCategory());
             stmt.setString(3, post.getTitle());
             stmt.setString(4, post.getContent());

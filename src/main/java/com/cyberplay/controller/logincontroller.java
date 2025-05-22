@@ -63,13 +63,16 @@ public class logincontroller extends HttpServlet {
 		if (loginStatus != null && loginStatus) {
 			SessionUtil.setAttribute(req, "username", username);
 			SessionUtil.setAttribute(req, "user", usermodel);
+			
 			if (username.equals("admin")) {
+				SessionUtil.setAttribute(req, "role", "admin");
+				usermodel.setRole("admin");
 				Cookieutil.addCookie(resp, "role", "admin", 5 * 30);
-				resp.sendRedirect(req.getContextPath() + "/pages/adminpanel.jsp");
+				resp.sendRedirect(req.getContextPath() + "/admin");
 				System.out.println("Logged in as admin.");// Redirect to /home
 			} else {
 				Cookieutil.addCookie(resp, "role", "user", 5 * 30);
-				resp.sendRedirect(req.getContextPath() + "/pages/index.jsp"); // Redirect to /home
+				resp.sendRedirect(req.getContextPath() + "/pages/home"); // Redirect to /home
 				System.out.println("Logged in as user.");
 			}
 		} else {

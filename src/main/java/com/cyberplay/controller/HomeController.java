@@ -19,11 +19,14 @@ public class HomeController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private CategoryService categoryService = new CategoryService();
+    List<categorymodel> allCats = categoryService.getAllCategories();
+   
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         // fetch all categories
+    	
         List<categorymodel> categories = categoryService.getAllCategories();
         // make them available to the JSP
         request.setAttribute("categories", categories);

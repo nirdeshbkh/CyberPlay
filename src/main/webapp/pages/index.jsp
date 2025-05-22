@@ -2,6 +2,7 @@
     request.setAttribute("pageStyle", "about");
 %>
 <jsp:include page="header.jsp" />
+
     <main>
         <!-- Hero Section -->
         <section class="hero-section">
@@ -62,132 +63,33 @@
                 -->
                 
                 <!-- FPS Category -->
-                <a href="fps-forum.jsp" class="category-card">
-                    <div class="category-content">
-                        <div class="category-icon bg-red">
-                            <i data-lucide="target"></i>
-                        </div>
-                        <h3 class="category-title">FPS Games</h3>
-                        <p class="category-description">First-person shooters, tactical shooters, and arena combat games</p>
-                        <div class="category-meta">
-                            <span class="topic-count">1342 topics</span>
-                            <span class="explore-link">Explore-> </span>
-                        </div>
-                    </div>
-                    <div class="category-bg bg-red"></div>
-                </a>
+              
 
-                <!-- RPG Category - Currently implemented -->
-                <a href="rpg-forum.jsp" class="category-card">
-                    <div class="category-content">
-                        <div class="category-icon bg-purple">
-                            <i data-lucide="swords"></i>
-                        </div>
-                        <h3 class="category-title">RPG Adventures</h3>
-                        <p class="category-description">Role-playing games, character builds, and quest strategies</p>
-                        <div class="category-meta">
-                            <span class="topic-count">976 topics</span>
-                            <span class="explore-link">Explore-> </span>
-                        </div>
-                    </div>
-                    <div class="category-bg bg-purple"></div>
-                </a>
+<%
+    @SuppressWarnings("unchecked")
+    java.util.List<com.cyberplay.model.categorymodel> categories =
+        (java.util.List<com.cyberplay.model.categorymodel>) request.getAttribute("categories");
+    String ctx = request.getContextPath();
+    if (categories != null) {
+        for (com.cyberplay.model.categorymodel cat : categories) {
+%>
+<a href="<%= ctx %>/listpost?category=<%= cat.getId() %>" class="category-card">
+    <div class="category-content">
+        
+        <h3 class="category-title"><%= cat.getName() %></h3>
+     
+        <div class="category-meta">
+            
+            <span class="explore-link">Explore --></span>
+        </div>
+    </div>
+    
+</a>
+<%
+        }
+    }
+%>
 
-                <!-- MMORPG Category -->
-                <a href="mmorpg-forum.jsp" class="category-card">
-                    <div class="category-content">
-                        <div class="category-icon bg-blue">
-                            <i data-lucide="users"></i>
-                        </div>
-                        <h3 class="category-title">MMORPG</h3>
-                        <p class="category-description">Massive multiplayer online role-playing games</p>
-                        <div class="category-meta">
-                            <span class="topic-count">1150 topics</span>
-                            <span class="explore-link">Explore-> </span>
-                        </div>
-                    </div>
-                    <div class="category-bg bg-blue"></div>
-                </a>
-
-                <!-- Simulation Category -->
-                <a href="simulation-forum.jsp" class="category-card">
-                    <div class="category-content">
-                        <div class="category-icon bg-green">
-                            <i data-lucide="boxes"></i>
-                        </div>
-                        <h3 class="category-title">Simulation</h3>
-                        <p class="category-description">Life sims, city builders, and virtual reality experiences</p>
-                        <div class="category-meta">
-                            <span class="topic-count">489 topics</span>
-                            <span class="explore-link">Explore-> </span>
-                        </div>
-                    </div>
-                    <div class="category-bg bg-green"></div>
-                </a>
-
-                <!-- Racing Category -->
-                <a href="racing-forum.jsp" class="category-card">
-                    <div class="category-content">
-                        <div class="category-icon bg-yellow">
-                            <i data-lucide="car"></i>
-                        </div>
-                        <h3 class="category-title">Racing</h3>
-                        <p class="category-description">Racing games, driving simulators, and vehicle customization</p>
-                        <div class="category-meta">
-                            <span class="topic-count">632 topics</span>
-                            <span class="explore-link">Explore-> </span>
-                        </div>
-                    </div>
-                    <div class="category-bg bg-yellow"></div>
-                </a>
-
-                <!-- Battle Royale Category -->
-                <a href="battle-royale-forum.jsp" class="category-card">
-                    <div class="category-content">
-                        <div class="category-icon bg-orange">
-                            <i data-lucide="trophy"></i>
-                        </div>
-                        <h3 class="category-title">Battle Royale</h3>
-                        <p class="category-description">Last-man-standing games, strategies, and team tactics</p>
-                        <div class="category-meta">
-                            <span class="topic-count">853 topics</span>
-                            <span class="explore-link">Explore-> </span>
-                        </div>
-                    </div>
-                    <div class="category-bg bg-orange"></div>
-                </a>
-
-                <!-- Indie Category -->
-                <a href="indie-forum.jsp" class="category-card">
-                    <div class="category-content">
-                        <div class="category-icon bg-pink">
-                            <i data-lucide="radio"></i>
-                        </div>
-                        <h3 class="category-title">Indie Scene</h3>
-                        <p class="category-description">Independent games, upcoming releases, and hidden gems</p>
-                        <div class="category-meta">
-                            <span class="topic-count">724 topics</span>
-                            <span class="explore-link">Explore-> </span>
-                        </div>
-                    </div>
-                    <div class="category-bg bg-pink"></div>
-                </a>
-
-                <!-- General Gaming Category -->
-                <a href="general-gaming-forum.jsp" class="category-card">
-                    <div class="category-content">
-                        <div class="category-icon bg-cyan">
-                            <i data-lucide="gamepad-2"></i>
-                        </div>
-                        <h3 class="category-title">General Gaming</h3>
-                        <p class="category-description">General discussion, industry news, and gaming culture</p>
-                        <div class="category-meta">
-                            <span class="topic-count">2145 topics</span>
-                            <span class="explore-link">Explore</span>
-                        </div>
-                    </div>
-                    <div class="category-bg bg-cyan"></div>
-                </a>
             </div>
         </section>
 

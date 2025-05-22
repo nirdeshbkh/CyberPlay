@@ -16,7 +16,7 @@ public class postmodel {
         this.id = id;
     }
 
-    public int getusername() {
+    public String getusername() {
         return username;
     }
 

@@ -39,7 +39,7 @@
                 </div>
                 
                 <div class="forum-actions">
-                     <a button href="CreateNewPost.jsp" class="cyber-button purple-glow">
+                     <a button href="/CyberPlay1/addpost" class="cyber-button purple-glow">
                     <i data-lucide="plus"></i>
                      Create New Post
                         
@@ -220,7 +220,7 @@
                 <p class="cta-description">
                     Share your FPS gaming experiences, strategies, and opinions with our community.
                 </p>
-                 <a button href="CreateNewPost.jsp" class="cyber-button purple-glow">
+                 <a button href="/CyberPlay1/addpost" class="cyber-button purple-glow">
                     <i data-lucide="plus"></i>
                      Create New Post
                         

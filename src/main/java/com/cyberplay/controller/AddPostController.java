@@ -1,6 +1,8 @@
 package com.cyberplay.controller;
 
+import com.cyberplay.model.categorymodel;
 import com.cyberplay.model.postmodel;
+import com.cyberplay.service.CategoryService;
 import com.cyberplay.service.PostService;
 import com.cyberplay.model.usermodel;
 
@@ -8,35 +10,34 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(asyncSupported = true, urlPatterns = { "/addpost" })
 public class AddPostController extends HttpServlet {
   private static final long serialVersionUID = 1L;
   private PostService postService = new PostService();
+  private CategoryService categoryService = new CategoryService();
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    // Check login
-    HttpSession session = request.getSession(false);
-    usermodel user = (session != null)
-        ? (usermodel) session.getAttribute("user")
-        : null;
-    if (user == null) {
-      // not logged in → redirect to login page
-      response.sendRedirect(request.getContextPath() + "/login");
-      return;
-    }
+	        throws ServletException, IOException {
+	    HttpSession session = request.getSession(false);
+	    usermodel user = (session != null) ? (usermodel) session.getAttribute("user") : null;
+	    if (user == null) {
+	        response.sendRedirect(request.getContextPath() + "/login");
+	        return;
+	    }
 
-    // load all posts
-    List<postmodel> allPosts = postService.getAllPosts();
-    request.setAttribute("posts", allPosts);
+	    // ✅ Load categories
+	    List<categorymodel> categories = categoryService.getAllCategories();
+	    request.setAttribute("categories", categories); // ✅ Fix: now JSP will not get null
 
-    // show the add post form (with list of existing posts available)
-    request.getRequestDispatcher("/pages/CreateNewPost.jsp")
-        .forward(request, response);
-  }
+	    // Load all posts (optional if not used in JSP)
+	    List<postmodel> allPosts = postService.getAllPosts();
+	    request.setAttribute("posts", allPosts);
 
+	    request.getRequestDispatcher("/pages/CreateNewPost.jsp").forward(request, response);
+	}
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {

@@ -62,7 +62,7 @@ public class DeletePostController extends HttpServlet {
         boolean deleted = postService.deletePost(postId);
         if (deleted) {
             // Redirect back to the posts list (or wherever)
-            response.sendRedirect(request.getContextPath() + "/listposts?category=" + existing.getCategory());
+            response.sendRedirect(request.getContextPath() + "/admin" );
         } else {
             // On failure, show an error message
             request.setAttribute("errorMessage", "Failed to delete post. Please try again.");
