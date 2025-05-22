@@ -257,12 +257,9 @@
                     </ul>
                 </div>
 
+				<!-- 
                 <div class="footer-links">
-                    <!-- 
-                        Game Categories in the footer.
-                        Each link points to the corresponding forum page.
-                        This ensures consistent navigation throughout the site.
-                    -->
+                    
                     <h4 class="footer-subtitle">Game Categories</h4>
                     <ul class="footer-menu">
                         <li><a href="fps-forum.jsp">FPS</a></li>
@@ -275,6 +272,7 @@
                         <li><a href="general-gaming-forum.jsp">General Gaming</a></li>
                     </ul>
                 </div>
+                 -->
 
                 <div class="footer-newsletter">
                     <h4 class="footer-subtitle">Join Our Newsletter</h4>
